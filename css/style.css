@@ -28,12 +28,17 @@ main {
   align-content: center;
   padding: 1rem;
 }
-
-main div {
+main p {
   grid-row: 2;
   grid-column: 2 / 5;
   padding: 2rem;
 }
 #displayImages img {
   width: 150px;
+}
+#getResultsBtn {
+  font-weight: bold;
+  padding: 1rem;
+  border: 1px solid black;
+  align-content: center;
 }
