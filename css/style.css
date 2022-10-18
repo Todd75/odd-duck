@@ -1,50 +1,44 @@
-#header {
+header img {
+  width: 183px;
+}
+header {
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  align-content: space-between;
+  flex-wrap: wrap;
 }
-h1 {
-  font-size: 3rem;
-  padding: 1rem;
+header h1 {
+  padding: 2rem;
 }
-#projectOddDuck {
+main {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  grid-template-rows: 20rem 1fr 1fr;
-  align-content: center;
-  justify-content: center;
+  grid-template-columns: 130px 1fr, 1fr, 1fr;
+  grid-template-rows: 1fr 1fr;
 }
 #resultsList {
-  grid-column-start: 1;
-  grid-column-end: 1;
-  grid-row-start: 1;
-  grid-row-end: 3;
-  border: 3px solid black;
-  padding: 5px;
+  border: 2px solid black;
+  grid-column: 1;
+  grid-row: 1 / 3;
+  width: 15rem;
 }
-
-#imageOne {
-  grid-column-start: 3;
-  grid-column-end: 5;
-  grid-row-start: 1;
-  grid-row-end: 3;
-  border: 3px solid black;
-  justify-self: center;
+#displayImages {
+  grid-column: 2 / 5;
+  grid-row: 1; 
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+  align-content: center;
+  padding: 1rem;
 }
-#imageTwo {
-  grid-column-start: 3;
-  grid-column-end: 5;
-  grid-row-start: 1;
-  grid-row-end: 3;
-  border: 3px solid black;
-  justify-self: center;
+main p {
+  grid-row: 2;
+  grid-column: 2 / 5;
+  padding: 2rem;
 }
-#imageThree {
-  grid-column-start: 3;
-  grid-column-end: 5;
-  grid-row-start: 1;
-  grid-row-end: 3;
-  border: 3px solid black;
-  justify-self: center;
+#displayImages img {
+  width: 150px;
+}
+#getResultsBtn {
+  font-weight: bold;
+  padding: 1rem;
+  border: 1px solid black;
+  align-content: center;
 }
