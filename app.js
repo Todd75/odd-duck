@@ -20,7 +20,7 @@ function MyInventory(name, fileExtension) {
 }
 
 function randomInventory() {
-  return Math.floor(Math.random() * inventoryArray)
+  return Math.floor(Math.random() * inventoryArray);
 }
 let bag = new MyInventory('bag', 'jpg');
 let banana = new MyInventory('banana', 'jpg');
@@ -44,5 +44,9 @@ let wineGlass = new MyInventory('wine-glass', 'jpg');
 let inventoryArray = [bag, banana, bathroom, boots, breakfast, bubblegum, chair, cthulhu, dogDuck, dragon, pen, petSweep, scissors, shark, sweep, tauntaun, unicorn, waterCan, wineGlass];
 
 function displayInventory() {
+  let inventory1 = randomInventory();
+  let inventory2 = randomInventory();
+  let inventory3 = randomInventory();
+  console.log(inventory1, inventory2, inventory3);
   
 }
