@@ -48,5 +48,7 @@ function displayInventory() {
   let inventory2 = randomInventory();
   let inventory3 = randomInventory();
   console.log(inventory1, inventory2, inventory3);
-  
+  while(inventory1 === inventory2 || inventory2 === inventory3 || inventory1 === inventory3) {
+    randomInventory();
+  }
 }
