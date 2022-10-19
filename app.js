@@ -7,7 +7,7 @@ let image2 = document.getElementById('imageTwo');
 let image3 = document.querySelector('#imageThree');
 let viewResults = document.getElementById('resultsViews');
 console.log(image1);
-let maxVotes = 9;
+let maxVotes = 25;
 let userVotes = 0;
 
 
@@ -51,61 +51,23 @@ function displayInventory() {
   let inventory3 = randomInventory();
   while (inventory1 === inventory2 || inventory2 === inventory3 || inventory1 === inventory3) {
     inventory2 = randomInventory();
-    inventory3 = randomInventory();
+    inventory1 = randomInventory();
   }
   console.log(inventory1, inventory2, inventory3);
 
   image1.src = inventoryArray[inventory1].src;
   image1.alt = inventoryArray[inventory1].name;
-  inventoryArray[inventory1].display++;
+  inventoryArray[inventory1].views++;
   console.log(inventoryArray[inventory1].display);
   image2.src = inventoryArray[inventory2].src;
   image2.alt = inventoryArray[inventory2].name;
-  inventoryArray[inventory2].display++;
+  inventoryArray[inventory2].views++;
   console.log(inventoryArray[inventory2].display);
   image3.src = inventoryArray[inventory3].src;
   image3.alt = inventoryArray[inventory3].name;
-  inventoryArray[inventory3].display++;
+  inventoryArray[inventory3].views++;
   console.log(inventoryArray[inventory3].display);
 }
-
-function displayResults() {
-  for (let i = 0; i < inventoryArray.length; i++) {
-    let li = document.createElement('li');
-    li.textContent = `${inventoryArray[i].name}: ${inventoryArray[i].votes} votes.`;
-    viewResults.appendChild(li);
-  }
-}
-
-function handleClicks(event) {
-  if (event.target === myInventory) {
-    alert('Please select an image.');
-  }
-  console.log('click');
-  console.log(event.target.alt);
-  userVotes++;
-  let clickedInventory = event.target.alt;
-  for (let i = 0; i < inventoryArray.length; i++) {
-    if (clickedInventory === inventoryArray[i].name) {
-      console.log(inventoryArray[i]);
-      inventoryArray[i].votes++;
-      break;
-    }
-  }
-  if (userVotes === maxVotes) {
-    myInventory.removeEventListener('click', handleClicks);
-    console.log('myInventory is finshed');
-    // viewResults.className = 'clicks-allowed';
-    displayResults();
-    // viewResults.addEventListener('click', displayResults);
-  } else {
-    displayInventory();
-  }
-}
-myInventory.addEventListener('click', handleClicks);
-
-displayInventory();
-
 // let indexArray = [];
 
 // function displayInventory() {
@@ -193,10 +155,44 @@ displayInventory();
 
 //   ]
 // };
-
-
-
 // const myChart = new Chart(
 //   document.getElementById('myChart'),
 //   config
 // );
+
+function displayResults() {
+  for (let i = 0; i < inventoryArray.length; i++) {
+    let li = document.createElement('li');
+    li.textContent = `${inventoryArray[i].name}: ${inventoryArray[i].votes} votes.`;
+    viewResults.appendChild(li);
+  }
+}
+
+function handleClicks(event) {
+  if (event.target === myInventory) {
+    alert('Please select an image.');
+  }
+  console.log(event.target);
+  console.log('click');
+  console.log(event.target.alt);
+  userVotes++;
+  let clickedInventory = event.target.alt;
+  for (let i = 0; i < inventoryArray.length; i++) {
+    if (clickedInventory === inventoryArray[i].name) {
+      console.log(inventoryArray[i]);
+      inventoryArray[i].votes++;
+      break;
+    }
+  }
+  if (userVotes === maxVotes) {
+    myInventory.removeEventListener('click', handleClicks);
+    console.log('myInventory is finshed');
+    displayResults();
+    // viewResults.addEventListener('click', displayResults);
+  } else {
+    displayInventory();
+  }
+}
+myInventory.addEventListener('click', handleClicks);
+
+displayInventory();
