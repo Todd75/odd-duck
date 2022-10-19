@@ -1,15 +1,14 @@
 'use strict';
 
 let myInventory = document.querySelector('#oddDucksProject');
-let votes = document.querySelector('#viewResults');
 let image1 = document.querySelector('#imageOne');
 let image2 = document.getElementById('imageTwo');
 let image3 = document.querySelector('#imageThree');
 let viewResults = document.getElementById('resultsViews');
-console.log(image1);
+let votes = document.querySelector('#viewResults');
 let maxVotes = 25;
 let userVotes = 0;
-
+let indexArray = [];
 
 function MyInventory(name, fileExtension) {
   this.name = name;
@@ -41,125 +40,68 @@ let tauntaun = new MyInventory('tauntaun', 'jpg');
 let unicorn = new MyInventory('unicorn', 'jpg');
 let waterCan = new MyInventory('water-can', 'jpg');
 let wineGlass = new MyInventory('wine-glass', 'jpg');
+
 let inventoryArray = [bag, banana, bathroom, boots, breakfast, bubblegum, chair, cthulhu, dogDuck, dragon, pen, petSweep, scissors, shark, sweep, tauntaun, unicorn, waterCan, wineGlass];
 
 
 
-function displayInventory() {
-  let inventory1 = randomInventory();
-  let inventory2 = randomInventory();
-  let inventory3 = randomInventory();
-  while (inventory1 === inventory2 || inventory2 === inventory3 || inventory1 === inventory3) {
-    inventory2 = randomInventory();
-    inventory1 = randomInventory();
-  }
-  console.log(inventory1, inventory2, inventory3);
+// function displayInventory() {
+//   let inventory1 = randomInventory();
+//   let inventory2 = randomInventory();
+//   let inventory3 = randomInventory();
+//   while (inventory1 === inventory2 || inventory2 === inventory3 || inventory1 === inventory3) {
+//     inventory2 = randomInventory();
+//     inventory1 = randomInventory();
+//   }
+//   console.log(inventory1, inventory2, inventory3);
 
-  image1.src = inventoryArray[inventory1].src;
-  image1.alt = inventoryArray[inventory1].name;
-  inventoryArray[inventory1].views++;
-  console.log(inventoryArray[inventory1].display);
-  image2.src = inventoryArray[inventory2].src;
-  image2.alt = inventoryArray[inventory2].name;
-  inventoryArray[inventory2].views++;
-  console.log(inventoryArray[inventory2].display);
-  image3.src = inventoryArray[inventory3].src;
-  image3.alt = inventoryArray[inventory3].name;
-  inventoryArray[inventory3].views++;
-  console.log(inventoryArray[inventory3].display);
-}
-let indexArray = [];
+//   image1.src = inventoryArray[inventory1].src;
+//   image1.alt = inventoryArray[inventory1].name;
+//   inventoryArray[inventory1].views++;
+//   console.log(inventoryArray[inventory1].display);
+//   image2.src = inventoryArray[inventory2].src;
+//   image2.alt = inventoryArray[inventory2].name;
+//   inventoryArray[inventory2].views++;
+//   console.log(inventoryArray[inventory2].display);
+//   image3.src = inventoryArray[inventory3].src;
+//   image3.alt = inventoryArray[inventory3].name;
+//   inventoryArray[inventory3].views++;
+//   console.log(inventoryArray[inventory3].display);
+// }
+
 
 function displayInventory() {
 
   while (indexArray.length < 6) {
     let ranNumber = randomInventory();
-    if (!indexArray.includes(ranNumber)); {
+    if (!indexArray.includes(ranNumber)) {
       indexArray.push(ranNumber);
     }
   }
   console.log(indexArray);
+
+  let inventory1 = indexArray.shift();
+  let inventory2 = indexArray.shift();
+  let inventory3 = indexArray.shift();
+  console.log(inventory1, inventory2, inventory3);
+
+  // while (inventory1 === inventory2 || inventory2 === inventory3 || inventory1 === inventory3) {
+  //   inventory2 = randomInventory();
+  //   inventory1 = randomInventory();
+  // }
+  image1.src = inventoryArray[inventory1].src;
+  image1.alt = inventoryArray[inventory1].name;
+  inventoryArray[inventory1].display++;
+  console.log(inventoryArray[inventory1].display);
+  image2.src = inventoryArray[inventory2].src;
+  image2.alt = inventoryArray[inventory2].name;
+  inventoryArray[inventory2].display++;
+  console.log(inventoryArray[inventory2].display);
+  image3.src = inventoryArray[inventory3].src;
+  image3.alt = inventoryArray[inventory3].name;
+  inventoryArray[inventory3].display++;
+  console.log(inventoryArray[inventory3].display);
 }
-let inventory1 = indexArray.shift();
-let inventory2 = indexArray.shift();
-let inventory3 = indexArray.shift();
-
-const config = {
-  type: 'bar',
-  data: data,
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true
-      }
-    }
-  },
-};
-
-let totalScore = [];
-let totalViews = [];
-for (let i = 0; i < inventoryArray.length; i++) {
-  imageNames.push(inventoryArray[i].name);
-  totalViews.push([i])
-}
-const labels = inventoryNames;
-const data = {
-  labels: labels,
-  datasets: [{
-    label: 'Number of Views',
-    data: [65, 59, 80, 81, 56, 55, 40],
-    backgroundColor: [
-      'rgba(255, 99, 132, 0.2)',
-      'rgba(255, 159, 64, 0.2)',
-      'rgba(255, 205, 86, 0.2)',
-      'rgba(75, 192, 192, 0.2)',
-      'rgba(54, 162, 235, 0.2)',
-      'rgba(153, 102, 255, 0.2)',
-      'rgba(201, 203, 207, 0.2)'
-    ],
-    borderColor: [
-      'rgb(255, 99, 132)',
-      'rgb(255, 159, 64)',
-      'rgb(255, 205, 86)',
-      'rgb(75, 192, 192)',
-      'rgb(54, 162, 235)',
-      'rgb(153, 102, 255)',
-      'rgb(201, 203, 207)'
-    ],
-    borderWidth: 1
-  },
-  {
-    label: 'Number of Votes',
-    data: [65, 59, 80, 81, 56, 55, 40],
-    backgroundColor: [
-      'rgba(255, 99, 132, 0.2)',
-      'rgba(255, 159, 64, 0.2)',
-      'rgba(255, 205, 86, 0.2)',
-      'rgba(75, 192, 192, 0.2)',
-      'rgba(54, 162, 235, 0.2)',
-      'rgba(153, 102, 255, 0.2)',
-      'rgba(201, 203, 207, 0.2)'
-    ],
-    borderColor: [
-      'rgb(255, 99, 132)',
-      'rgb(255, 159, 64)',
-      'rgb(255, 205, 86)',
-      'rgb(75, 192, 192)',
-      'rgb(54, 162, 235)',
-      'rgb(153, 102, 255)',
-      'rgb(201, 203, 207)'
-    ],
-    borderWidth: 1
-
-  }
-
-  ]
-};
-const myChart = new Chart(
-  document.getElementById('myChart'),
-  config
-);
-
 function displayResults() {
   for (let i = 0; i < inventoryArray.length; i++) {
     let li = document.createElement('li');
@@ -167,12 +109,10 @@ function displayResults() {
     viewResults.appendChild(li);
   }
 }
-
 function handleClicks(event) {
   if (event.target === myInventory) {
     alert('Please select an image.');
   }
-  console.log(event.target);
   console.log('click');
   console.log(event.target.alt);
   userVotes++;
@@ -188,10 +128,78 @@ function handleClicks(event) {
     myInventory.removeEventListener('click', handleClicks);
     console.log('myInventory is finshed');
     displayResults();
-    // viewResults.addEventListener('click', displayResults);
+    chartMaker();
   } else {
     displayInventory();
   }
+}
+
+
+
+
+
+function chartMaker() {
+  let inventoryNames = [];
+  let productViews = [];
+  let productVotes = [];
+  for (let i = 0; i < inventoryArray.length; i++) {
+    inventoryNames.push(inventoryArray[i].name);
+    productViews.push(inventoryArray[i].display);
+    productVotes.push(inventoryArray[i].votes);
+  }
+  const labels = inventoryNames;
+  const data = {
+    labels: labels,
+    datasets: [{
+      label: 'Number of Votes',
+      data: productVotes,
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+      ],
+      borderColor: [
+        'red'
+      ],
+      hoverBackgroundColor: [
+        'lightyellow',
+      ],
+      hoverBorderColor: [
+        'rgb(114, 36, 152)',
+      ],
+      borderWidth: 1
+    },
+    {
+      label: 'Number of Views',
+      data: productViews,
+      backgroundColor: [
+        'rgba(25, 99, 132, 0.2)',
+      ],
+      borderColor: [
+        'black'
+      ],
+      hoverBackgroundColor: [
+        'lightblue',
+      ],
+      hoverBorderColor: [
+        'blue',
+      ],
+      borderWidth: 1
+    }]
+  };
+  const config = {
+    type: 'bar',
+    data: data,
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    },
+  };
+  const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
 }
 myInventory.addEventListener('click', handleClicks);
 

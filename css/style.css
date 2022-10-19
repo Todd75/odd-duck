@@ -19,15 +19,16 @@ header h1 {
   color:rgb(63, 23, 23);
 }
 main {
-  background-color: rgb(113, 189, 118);
+  background-color: rgb(150, 112, 91);
   min-width:850px;
   max-width: 1200px;
   display: grid;
-  grid-template-columns: 1fr 1fr  1fr  1fr;
-  grid-template-rows: 300px 1fr 1fr 1fr;
+  grid-template-columns: 250px 1fr  1fr  1fr;
+  grid-template-rows: 300px 1fr 200px 1fr;
   margin: 2rem auto;
 }
 #resultsList {
+  background-color: rgb(171, 132, 118);
   border: 2px solid black;
   grid-template-columns: 1 /2;
   grid-row-start: 2;
@@ -49,12 +50,12 @@ main p {
   padding: 2rem;
 }
 #displayImages img {
-  border: 5px solid transparent;
+  border: 8px solid transparent;
   flex: 1 1 20%;
   width: 100px;
   height: 300px;
 }
-#getResultsBtn {
+/* #getResultsBtn {
   font-weight: bold;
   padding: 1rem;
   border: 1px solid black;
@@ -64,19 +65,28 @@ main p {
   height: 15px;
   width: 80px;
   background-color: lightgrey;
-}
+} */
 #imageOne:hover {
-  border: 5px solid blue;
+  border: 8px solid rgb(3, 68, 48);
   cursor: grab;
 }
 #imageTwo:hover {
-  border: 5px solid blue;
+  border: 8px solid rgb(3, 68, 48);
   cursor: grab;
 }
 #imageThree:hover {
-  border: 5px solid blue;
+  border: 8px solid rgb(3, 68, 48);
   cursor: grab;
 }
 * {
   box-sizing: border-box;
+}
+#chartHolder {
+  background-color: rgb(234, 224, 213);
+  grid-column-start: 1;
+  grid-column-end: 5;
+}
+#customerThanks {
+  font-family: 'Satisfy', cursive;
+  font-size: 23px;
 }
