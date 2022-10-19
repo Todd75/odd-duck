@@ -43,6 +43,14 @@ let wineGlass = new MyInventory('wine-glass', 'jpg');
 
 let inventoryArray = [bag, banana, bathroom, boots, breakfast, bubblegum, chair, cthulhu, dogDuck, dragon, pen, petSweep, scissors, shark, sweep, tauntaun, unicorn, waterCan, wineGlass];
 
+// MyInventory.protoype.addToInventoryArray = function(name, fileExtension, votes, display) {
+//   if (inventoryArray.length > 0) {
+//     for (i = 0; i < inventoryArray.length; i++) {
+
+//     }
+//   }
+// }
+
 
 
 // function displayInventory() {
@@ -105,7 +113,7 @@ function displayInventory() {
 function displayResults() {
   for (let i = 0; i < inventoryArray.length; i++) {
     let li = document.createElement('li');
-    li.textContent = `${inventoryArray[i].name}: ${inventoryArray[i].votes} votes.`;
+    li.textContent = `${inventoryArray[i].name}: ${inventoryArray[i].votes} votes and ${inventoryArray[i].display} views.`;
     viewResults.appendChild(li);
   }
 }
@@ -134,10 +142,6 @@ function handleClicks(event) {
   }
 }
 
-
-
-
-
 function chartMaker() {
   let inventoryNames = [];
   let productViews = [];
@@ -154,16 +158,16 @@ function chartMaker() {
       label: 'Number of Votes',
       data: productVotes,
       backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
+        'rgba(171, 132, 118, 0.2)',
       ],
       borderColor: [
-        'red'
+        'rgb(171, 132, 118)'
       ],
       hoverBackgroundColor: [
         'lightyellow',
       ],
       hoverBorderColor: [
-        'rgb(114, 36, 152)',
+        'red',
       ],
       borderWidth: 1
     },
