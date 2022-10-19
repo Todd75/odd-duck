@@ -196,3 +196,4 @@ function handleClicks(event) {
 myInventory.addEventListener('click', handleClicks);
 
 displayInventory();
+
