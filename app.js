@@ -43,40 +43,6 @@ let wineGlass = new MyInventory('wine-glass', 'jpg');
 
 let inventoryArray = [bag, banana, bathroom, boots, breakfast, bubblegum, chair, cthulhu, dogDuck, dragon, pen, petSweep, scissors, shark, sweep, tauntaun, unicorn, waterCan, wineGlass];
 
-// MyInventory.protoype.addToInventoryArray = function(name, fileExtension, votes, display) {
-//   if (inventoryArray.length > 0) {
-//     for (i = 0; i < inventoryArray.length; i++) {
-
-//     }
-//   }
-// }
-
-
-
-// function displayInventory() {
-//   let inventory1 = randomInventory();
-//   let inventory2 = randomInventory();
-//   let inventory3 = randomInventory();
-//   while (inventory1 === inventory2 || inventory2 === inventory3 || inventory1 === inventory3) {
-//     inventory2 = randomInventory();
-//     inventory1 = randomInventory();
-//   }
-//   console.log(inventory1, inventory2, inventory3);
-
-//   image1.src = inventoryArray[inventory1].src;
-//   image1.alt = inventoryArray[inventory1].name;
-//   inventoryArray[inventory1].views++;
-//   console.log(inventoryArray[inventory1].display);
-//   image2.src = inventoryArray[inventory2].src;
-//   image2.alt = inventoryArray[inventory2].name;
-//   inventoryArray[inventory2].views++;
-//   console.log(inventoryArray[inventory2].display);
-//   image3.src = inventoryArray[inventory3].src;
-//   image3.alt = inventoryArray[inventory3].name;
-//   inventoryArray[inventory3].views++;
-//   console.log(inventoryArray[inventory3].display);
-// }
-
 
 function displayInventory() {
 
@@ -86,29 +52,22 @@ function displayInventory() {
       indexArray.push(ranNumber);
     }
   }
-  console.log(indexArray);
 
   let inventory1 = indexArray.shift();
   let inventory2 = indexArray.shift();
   let inventory3 = indexArray.shift();
   console.log(inventory1, inventory2, inventory3);
 
-  // while (inventory1 === inventory2 || inventory2 === inventory3 || inventory1 === inventory3) {
-  //   inventory2 = randomInventory();
-  //   inventory1 = randomInventory();
-  // }
   image1.src = inventoryArray[inventory1].src;
   image1.alt = inventoryArray[inventory1].name;
   inventoryArray[inventory1].display++;
-  console.log(inventoryArray[inventory1].display);
   image2.src = inventoryArray[inventory2].src;
   image2.alt = inventoryArray[inventory2].name;
   inventoryArray[inventory2].display++;
-  console.log(inventoryArray[inventory2].display);
   image3.src = inventoryArray[inventory3].src;
   image3.alt = inventoryArray[inventory3].name;
   inventoryArray[inventory3].display++;
-  console.log(inventoryArray[inventory3].display);
+
 }
 function displayResults() {
   for (let i = 0; i < inventoryArray.length; i++) {
@@ -121,27 +80,28 @@ function handleClicks(event) {
   if (event.target === myInventory) {
     alert('Please select an image.');
   }
-  console.log('click');
-  console.log(event.target.alt);
   userVotes++;
+
   let clickedInventory = event.target.alt;
   for (let i = 0; i < inventoryArray.length; i++) {
     if (clickedInventory === inventoryArray[i].name) {
-      console.log(inventoryArray[i]);
       inventoryArray[i].votes++;
       break;
     }
   }
   if (userVotes === maxVotes) {
     myInventory.removeEventListener('click', handleClicks);
-    console.log('myInventory is finshed');
     displayResults();
     chartMaker();
   } else {
     displayInventory();
+    storedData();
   }
 }
-
+function storedData() {
+  let viewedInventory = JSON.stringify(inventoryArray);
+  localStorage.setItem('display', viewedInventory);
+}
 function chartMaker() {
   let inventoryNames = [];
   let productViews = [];
@@ -205,6 +165,13 @@ function chartMaker() {
     config
   );
 }
+
+function getData() {
+
+}
+
+
+
 myInventory.addEventListener('click', handleClicks);
 
 displayInventory();
