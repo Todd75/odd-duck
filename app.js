@@ -9,7 +9,7 @@ let votes = document.querySelector('#viewResults');
 let maxVotes = 25;
 let userVotes = 0;
 let indexArray = [];
-
+let inventoryArray = [];
 function MyInventory(name, fileExtension) {
   this.name = name;
   this.fileExtension = fileExtension;
@@ -17,15 +17,9 @@ function MyInventory(name, fileExtension) {
   this.display = 0;
   this.src = `img/${this.name}.${this.fileExtension}`;
 }
-
 function randomInventory() {
   return Math.floor(Math.random() * inventoryArray.length);
 }
-
-
-let inventoryArray = [];
-
-
 function displayInventory() {
 
   while (indexArray.length < 9) {
@@ -34,12 +28,10 @@ function displayInventory() {
       indexArray.push(ranNumber);
     }
   }
-
   let inventory1 = indexArray.shift();
   let inventory2 = indexArray.shift();
   let inventory3 = indexArray.shift();
   console.log(inventory1, inventory2, inventory3);
-
   image1.src = inventoryArray[inventory1].src;
   image1.alt = inventoryArray[inventory1].name;
   inventoryArray[inventory1].display++;
@@ -49,7 +41,6 @@ function displayInventory() {
   image3.src = inventoryArray[inventory3].src;
   image3.alt = inventoryArray[inventory3].name;
   inventoryArray[inventory3].display++;
-
 }
 function getData() {
   let possibleData = localStorage.getItem('display');
@@ -85,8 +76,6 @@ function getData() {
     let inventoryArray = [bag, banana, bathroom, boots, breakfast, bubblegum, chair, cthulhu, dogDuck, dragon, pen, petSweep, scissors, shark, sweep, tauntaun, unicorn, waterCan, wineGlass];
   }
 }
-
-
 function displayResults() {
   for (let i = 0; i < inventoryArray.length; i++) {
     let li = document.createElement('li');
