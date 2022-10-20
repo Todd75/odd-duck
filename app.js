@@ -69,6 +69,22 @@ function displayInventory() {
   inventoryArray[inventory3].display++;
 
 }
+function getData() {
+  let possibleData = localStorage.getItem('display');
+  if (possibleData) {
+    inventoryArray = [];
+    let dataDisplayed = JSON.parse(possibleData);
+    for (let item of dataDisplayed) {
+      let name = item.name;
+      let fileExtension = item.fileExtension;
+      let votes = item.votes;
+      let display = item.display;
+      new MyInventory (name, fileExtension, votes, display);
+    }
+  }
+}
+
+
 function displayResults() {
   for (let i = 0; i < inventoryArray.length; i++) {
     let li = document.createElement('li');
@@ -98,6 +114,7 @@ function handleClicks(event) {
     storedData();
   }
 }
+getData();
 function storedData() {
   let viewedInventory = JSON.stringify(inventoryArray);
   localStorage.setItem('display', viewedInventory);
@@ -166,9 +183,7 @@ function chartMaker() {
   );
 }
 
-function getData() {
 
-}
 
 
 
