@@ -21,32 +21,14 @@ function MyInventory(name, fileExtension) {
 function randomInventory() {
   return Math.floor(Math.random() * inventoryArray.length);
 }
-let bag = new MyInventory('bag', 'jpg');
-let banana = new MyInventory('banana', 'jpg');
-let bathroom = new MyInventory('bathroom', 'jpg');
-let boots = new MyInventory('boots', 'jpg');
-let breakfast = new MyInventory('breakfast', 'jpg');
-let bubblegum = new MyInventory('bubblegum', 'jpg');
-let chair = new MyInventory('chair', 'jpg');
-let cthulhu = new MyInventory('cthulhu', 'jpg');
-let dogDuck = new MyInventory('dog-duck', 'jpg');
-let dragon = new MyInventory('dragon', 'jpg');
-let pen = new MyInventory('pen', 'jpg');
-let petSweep = new MyInventory('pet-sweep', 'jpg');
-let scissors = new MyInventory('scissors', 'jpg');
-let shark = new MyInventory('shark', 'jpg');
-let sweep = new MyInventory('sweep', 'png');
-let tauntaun = new MyInventory('tauntaun', 'jpg');
-let unicorn = new MyInventory('unicorn', 'jpg');
-let waterCan = new MyInventory('water-can', 'jpg');
-let wineGlass = new MyInventory('wine-glass', 'jpg');
 
-let inventoryArray = [bag, banana, bathroom, boots, breakfast, bubblegum, chair, cthulhu, dogDuck, dragon, pen, petSweep, scissors, shark, sweep, tauntaun, unicorn, waterCan, wineGlass];
+
+let inventoryArray = [];
 
 
 function displayInventory() {
 
-  while (indexArray.length < 6) {
+  while (indexArray.length < 9) {
     let ranNumber = randomInventory();
     if (!indexArray.includes(ranNumber)) {
       indexArray.push(ranNumber);
@@ -69,21 +51,40 @@ function displayInventory() {
   inventoryArray[inventory3].display++;
 
 }
-// function getData() {
-//   let possibleData = localStorage.getItem('display');
-//   if (possibleData) {
-//     inventoryArray = [];
-//     let dataDisplayed = JSON.parse(possibleData);
-//     for (let item of dataDisplayed) {
-//       let name = item.name;
-//       let fileExtension = item.fileExtension;
-//       let votes = item.votes;
-//       let display = item.display;
-//     }
-//   } else {
-//     new MyInventory (name, fileExtension, votes, display);
-//   }
-// }
+function getData() {
+  let possibleData = localStorage.getItem('display');
+  if (possibleData) {
+    let dataDisplayed = JSON.parse(possibleData);
+    inventoryArray = dataDisplayed;
+    for (let item of dataDisplayed) {
+      let name = item.name;
+      let fileExtension = item.fileExtension;
+      let votes = item.votes;
+      let display = item.display;
+    }
+  } else {
+    let bag = new MyInventory('bag', 'jpg');
+    let banana = new MyInventory('banana', 'jpg');
+    let bathroom = new MyInventory('bathroom', 'jpg');
+    let boots = new MyInventory('boots', 'jpg');
+    let breakfast = new MyInventory('breakfast', 'jpg');
+    let bubblegum = new MyInventory('bubblegum', 'jpg');
+    let chair = new MyInventory('chair', 'jpg');
+    let cthulhu = new MyInventory('cthulhu', 'jpg');
+    let dogDuck = new MyInventory('dog-duck', 'jpg');
+    let dragon = new MyInventory('dragon', 'jpg');
+    let pen = new MyInventory('pen', 'jpg');
+    let petSweep = new MyInventory('pet-sweep', 'jpg');
+    let scissors = new MyInventory('scissors', 'jpg');
+    let shark = new MyInventory('shark', 'jpg');
+    let sweep = new MyInventory('sweep', 'png');
+    let tauntaun = new MyInventory('tauntaun', 'jpg');
+    let unicorn = new MyInventory('unicorn', 'jpg');
+    let waterCan = new MyInventory('water-can', 'jpg');
+    let wineGlass = new MyInventory('wine-glass', 'jpg');
+    let inventoryArray = [bag, banana, bathroom, boots, breakfast, bubblegum, chair, cthulhu, dogDuck, dragon, pen, petSweep, scissors, shark, sweep, tauntaun, unicorn, waterCan, wineGlass];
+  }
+}
 
 
 function displayResults() {
@@ -112,14 +113,14 @@ function handleClicks(event) {
     chartMaker();
   } else {
     displayInventory();
-    // storedData();
+    storedData();
   }
 }
-// getData();
-// function storedData() {
-//   let viewedInventory = JSON.stringify(inventoryArray);
-//   localStorage.setItem('display', viewedInventory);
-// }
+getData();
+function storedData() {
+  let viewedInventory = JSON.stringify(inventoryArray);
+  localStorage.setItem('display', viewedInventory);
+}
 function chartMaker() {
   let inventoryNames = [];
   let productViews = [];
@@ -183,11 +184,6 @@ function chartMaker() {
     config
   );
 }
-
-
-
-
-
 myInventory.addEventListener('click', handleClicks);
-
+getData();
 displayInventory();
