@@ -69,20 +69,21 @@ function displayInventory() {
   inventoryArray[inventory3].display++;
 
 }
-function getData() {
-  let possibleData = localStorage.getItem('display');
-  if (possibleData) {
-    inventoryArray = [];
-    let dataDisplayed = JSON.parse(possibleData);
-    for (let item of dataDisplayed) {
-      let name = item.name;
-      let fileExtension = item.fileExtension;
-      let votes = item.votes;
-      let display = item.display;
-      new MyInventory (name, fileExtension, votes, display);
-    }
-  }
-}
+// function getData() {
+//   let possibleData = localStorage.getItem('display');
+//   if (possibleData) {
+//     inventoryArray = [];
+//     let dataDisplayed = JSON.parse(possibleData);
+//     for (let item of dataDisplayed) {
+//       let name = item.name;
+//       let fileExtension = item.fileExtension;
+//       let votes = item.votes;
+//       let display = item.display;
+//     }
+//   } else {
+//     new MyInventory (name, fileExtension, votes, display);
+//   }
+// }
 
 
 function displayResults() {
@@ -111,14 +112,14 @@ function handleClicks(event) {
     chartMaker();
   } else {
     displayInventory();
-    storedData();
+    // storedData();
   }
 }
-getData();
-function storedData() {
-  let viewedInventory = JSON.stringify(inventoryArray);
-  localStorage.setItem('display', viewedInventory);
-}
+// getData();
+// function storedData() {
+//   let viewedInventory = JSON.stringify(inventoryArray);
+//   localStorage.setItem('display', viewedInventory);
+// }
 function chartMaker() {
   let inventoryNames = [];
   let productViews = [];
