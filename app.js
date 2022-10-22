@@ -92,12 +92,13 @@ function handleClicks(event) {
   if (event.target.name === inventoryArray.name) {
     alert('Please select an image.');
   }
-  userVotes++;
+  
 
   let clickedInventory = event.target.alt;
   for (let i = 0; i < inventoryArray.length; i++) {
     if (clickedInventory === inventoryArray[i].alt) {
       inventoryArray[i].votes++;
+      userVotes++;
       break;
     }
   }
