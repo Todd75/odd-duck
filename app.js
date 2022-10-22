@@ -11,12 +11,14 @@ let maxVotes = 25;
 let userVotes = 0;
 let indexArray = [];
 let inventoryArray = [];
-function MyInventory(src, name, fileExtension) {
+
+function MyInventory(src, name, fileExtension, alt) {
   this.name = name;
   this.fileExtension = fileExtension;
   this.votes = 0;
   this.display = 0;
   this.src = src;
+  this.alt = alt;
   inventoryArray.push(this);
 }
 // Function creates the random images 
@@ -26,7 +28,7 @@ function randomInventory() {
 // function that makes sure the images are not the same
 function displayInventory() {
 
-  while (indexArray.length < 9) {
+  while (indexArray.length < 10) {
     let ranNumber = randomInventory();
     if (!indexArray.includes(ranNumber)) {
       indexArray.push(ranNumber);
@@ -56,25 +58,25 @@ function getData() {
     inventoryArray = parsedItem;
     console.log(parsedItem);
   } else {
-    new MyInventory('img/bag.jpg', 'weird bag', 'bag');
-    new MyInventory('img/banana.jpg', 'weird banana', 'banana');
-    new MyInventory('img/bathroom.jpg', 'weird bathroom', 'bathroom');
-    new MyInventory('img/boots.jpg', 'weird boots', 'boots');
-    new MyInventory('img/breakfast.jpg', 'weird breakfast', 'breakfast');
-    new MyInventory('img/bubblegum.jpg', 'weird bubblegum', 'bubblegum');
-    new MyInventory('img/chair.jpg', 'weird chair', 'chair');
-    new MyInventory('img/cthulhu.jpg', 'weird cthulhu', 'cthulhu');
-    new MyInventory('img/dog-duck.jpg', 'weird dog duck', 'dog-duck');
-    new MyInventory('img/dragon.jpg', 'weird dragon', 'dragon');
-    new MyInventory('img/pen.jpg', 'weird pen', 'pen');
-    new MyInventory('img/pet-sweep.jpg', 'weird pet sweep', 'pet-sweep');
-    new MyInventory('img/scissors.jpg', 'weird scissors', 'scissors');
-    new MyInventory('img/shark.jpg', 'weird shark', 'shark');
-    new MyInventory('img/sweep.png', 'weird sweep', 'sweep');
-    new MyInventory('img/tauntaun.jpg', 'weird tauntaun', 'tauntaun');
-    new MyInventory('img/unicorn.jpg', 'weird unicorn', 'unicorn');
-    new MyInventory('img/water-can.jpg', 'weird water can', 'water-can');
-    new MyInventory('img/wine-glass.jpg', 'weird wine glass', 'wine-glass');
+    new MyInventory('img/bag.jpg', 'bag', 'jpg', 'bag');
+    new MyInventory('img/banana.jpg', 'banana', 'jpg', 'banana');
+    new MyInventory('img/bathroom.jpg', 'bathroom', 'jpg', 'bathroom');
+    new MyInventory('img/boots.jpg', 'boots', 'jpg', 'boots');
+    new MyInventory('img/breakfast.jpg', 'breakfast', 'jpg', 'breakfast');
+    new MyInventory('img/bubblegum.jpg', 'bubblegum', 'jpg', 'bubblegum');
+    new MyInventory('img/chair.jpg', 'wchair', 'jpg', 'chair');
+    new MyInventory('img/cthulhu.jpg', 'wcthulhu', 'jpg', 'cthulhu');
+    new MyInventory('img/dog-duck.jpg', 'dog-duck', 'jpg', 'dog-duck');
+    new MyInventory('img/dragon.jpg', 'dragon', 'jpg', 'dragon');
+    new MyInventory('img/pen.jpg', 'pen', 'jpg', 'pen');
+    new MyInventory('img/pet-sweep.jpg', 'pet-sweep', 'jpg', 'pet-sweep');
+    new MyInventory('img/scissors.jpg', 'scissors', 'jpg', 'scissors');
+    new MyInventory('img/shark.jpg', 'shark', 'jpg', 'shark');
+    new MyInventory('img/sweep.png', 'sweep', 'png', 'sweep');
+    new MyInventory('img/tauntaun.jpg', 'tauntaun', 'tauntaun');
+    new MyInventory('img/unicorn.jpg', 'unicorn', 'jpg', 'unicorn');
+    new MyInventory('img/water-can.jpg', 'water-can', 'jpg', 'water-can');
+    new MyInventory('img/wine-glass.jpg', 'wine-glass', 'jpg', 'wine-glass');
   }
 }
 // displays the results to the user
@@ -87,14 +89,14 @@ function displayResults() {
 }
 // click event that handles the user picking pictures
 function handleClicks(event) {
-  if (event.target === inventory) {
+  if (event.target.name === inventoryArray.name) {
     alert('Please select an image.');
   }
   userVotes++;
 
   let clickedInventory = event.target.alt;
   for (let i = 0; i < inventoryArray.length; i++) {
-    if (clickedInventory === inventoryArray[i].name) {
+    if (clickedInventory === inventoryArray[i].alt) {
       inventoryArray[i].votes++;
       break;
     }
@@ -104,10 +106,11 @@ function handleClicks(event) {
     displayResults();
     chartMaker();
   } else {
-    displayInventory();
     storedData();
+    displayInventory();
   }
 }
+
 // storing the data collected in local storage
 function storedData() {
   let viewedInventory = JSON.stringify(inventoryArray);
