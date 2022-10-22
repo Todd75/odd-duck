@@ -181,4 +181,3 @@ function chartMaker() {
 inventory.addEventListener('click', handleClicks);
 getData();
 displayInventory();
-
