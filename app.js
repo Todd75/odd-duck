@@ -108,7 +108,6 @@ function handleClicks(event) {
     storedData();
   }
 }
-// getData();
 // storing the data collected in local storage
 function storedData() {
   let viewedInventory = JSON.stringify(inventoryArray);
