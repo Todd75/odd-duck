@@ -37,7 +37,7 @@ function displayInventory() {
   let inventory1 = indexArray.shift();
   let inventory2 = indexArray.shift();
   let inventory3 = indexArray.shift();
-  console.log(inventory1, inventory2, inventory3);
+  // console.log(inventory1, inventory2, inventory3);
   image1.src = inventoryArray[inventory1].src;
   image1.alt = inventoryArray[inventory1].name;
   inventoryArray[inventory1].display++;
@@ -51,8 +51,9 @@ function displayInventory() {
 
 // pulls any data from local storage and creates an array of items
 function getData() {
-  let storedItems = localStorage.getItem('allProducts');
+  let storedItems = localStorage.getItem('display');
   // load saved items from storage
+  console.log(storedItems);
   if (storedItems) {
     let parsedItem = JSON.parse(storedItems);
     inventoryArray = parsedItem;
