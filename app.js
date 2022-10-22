@@ -1,5 +1,5 @@
 'use strict';
-
+// Global Variables
 let myInventory = document.querySelector('#oddDucksProject');
 let image1 = document.querySelector('#imageOne');
 let image2 = document.getElementById('imageTwo');
@@ -17,9 +17,11 @@ function MyInventory(name, fileExtension) {
   this.display = 0;
   this.src = `img/${this.name}.${this.fileExtension}`;
 }
+// Function creates the random images 
 function randomInventory() {
   return Math.floor(Math.random() * inventoryArray.length);
 }
+// function that makes sure the images are not the same
 function displayInventory() {
 
   while (indexArray.length < 9) {
@@ -42,6 +44,7 @@ function displayInventory() {
   image3.alt = inventoryArray[inventory3].name;
   inventoryArray[inventory3].display++;
 }
+// pulls any data from local storage and creates an array of items
 function getData() {
   let possibleData = localStorage.getItem('display');
   if (possibleData) {
@@ -76,6 +79,7 @@ function getData() {
     let inventoryArray = [bag, banana, bathroom, boots, breakfast, bubblegum, chair, cthulhu, dogDuck, dragon, pen, petSweep, scissors, shark, sweep, tauntaun, unicorn, waterCan, wineGlass];
   }
 }
+// displays the results to the user
 function displayResults() {
   for (let i = 0; i < inventoryArray.length; i++) {
     let li = document.createElement('li');
@@ -83,6 +87,7 @@ function displayResults() {
     viewResults.appendChild(li);
   }
 }
+// click event that handles the user picking pictures
 function handleClicks(event) {
   if (event.target === myInventory) {
     alert('Please select an image.');
@@ -106,10 +111,12 @@ function handleClicks(event) {
   }
 }
 getData();
+// storing the data collected in local storage
 function storedData() {
   let viewedInventory = JSON.stringify(inventoryArray);
   localStorage.setItem('display', viewedInventory);
 }
+// making the chart from the data collected
 function chartMaker() {
   let inventoryNames = [];
   let productViews = [];
